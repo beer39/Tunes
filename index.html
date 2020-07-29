@@ -113,7 +113,7 @@
 									<div class="radio-check">
 										<img class="radio-img" src="radio/RTLGroove.png" alt="обложка">
 									</div>
-									<input class="radio-btn" type="radio" id="RTLGroove" name="radioStantion"
+									<input class="radio-btn radio-player-volume" type="radio" id="RTLGroove" name="radioStantion"
 											data-radio-stantion="http://shoutcast.rtl.it:3040/">
 									<span class="radio-name">RTL Groove</span>
 								</label>
@@ -180,6 +180,9 @@
 			</div>
 			<footer class="footer-fix radio-footer">
 				<button class="radio-stop fa fa-play"></button>
+				<span class="fa fa-volume-down volume-radio-down radio-icon"></span>
+				<input type="range" class="radio-volume" min="0" max="100" step="1" value="100">
+				<span class="fa fa-volume-up volume-radio-up radio-icon"></span>
 			</footer>
 		</article>
 	</main>
