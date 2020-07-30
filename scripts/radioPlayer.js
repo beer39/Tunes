@@ -1,10 +1,10 @@
 export const radioPlayerInit = () => {
-    const radio              =document.querySelector('.radio');
-    const radioCoverImg      =document.querySelector('.radio-cover__img');
-    const radioHeaderBig     =document.querySelector('.radio-header__big');
-    const radioNavigation    =document.querySelector('.radio-navigation');
-    const radioItem          =document.querySelectorAll('.radio-item');
-    const radioStop          =document.querySelector('.radio-stop');
+    const radio              = document.querySelector('.radio');
+    const radioCoverImg      = document.querySelector('.radio-cover__img');
+    const radioHeaderBig     = document.querySelector('.radio-header__big');
+    const radioNavigation    = document.querySelector('.radio-navigation');
+    const radioItem          = document.querySelectorAll('.radio-item');
+    const radioStop          = document.querySelector('.radio-stop');
 
     // регулировка звука
     const radioPlayerVolume     = document.querySelectorAll('.radio-player-volume')
@@ -66,7 +66,6 @@ export const radioPlayerInit = () => {
     // уровень громкости и управление звуком
     radioVolume.addEventListener('input', () => {
         audio.volume  = radioVolume.value / 100;
-        console.log(audio.volume);
     });
 
     volumeRadioDown.addEventListener('click', () => {
