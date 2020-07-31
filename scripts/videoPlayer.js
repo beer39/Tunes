@@ -73,6 +73,17 @@ export const videoPlayerInit = () => {
         videoPlayer.requestFullscreen();
     });
 
+
+    videoPlayerInit.stop = () => {
+        if (!videoPlayer.paused) {
+            videoPlayer.pause();
+            videoPlayer.classList.remove('play');
+            videoButtonPlay.classList.remove('fa-pause');
+            videoButtonPlay.classList.add('fa-play');
+        }
+    };
+
+
     videoVolume.addEventListener('input', () => {
         videoPlayer.volume  = videoVolume.value / 100;
     });

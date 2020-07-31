@@ -29,14 +29,21 @@ export const musicPlayerInit = () => {
         const track     = playlist[trackIndex];
 
         audioImg.src    = `./audio/${track}.jpg`;
-        audioHeader.textContent = track.toUpperCase();
         audioPlayer.src = `./audio/${track}.mp3`;
 
+        audioHeader.textContent = track.toUpperCase();
+
         if (isPlayed) {
-            audioPlayer.paused();
+            audioPlayer.pause();
         } else {
             audioPlayer.play();
         }
+        
+        
+        audioPlayer.addEventListener('canplay', () => {
+            updateTime();
+        });
+
     };
 
     const prevTrack = () => {
@@ -86,7 +93,8 @@ export const musicPlayerInit = () => {
         audioPlayer.play();
     });
 
-    audioPlayer.addEventListener('timeupdate', () => {
+
+    const updateTime = () => {
         const duration                  =   audioPlayer.duration;
         const currentTime               =   audioPlayer.currentTime;
         const progress                  =   (currentTime / duration) * 100;
@@ -98,11 +106,16 @@ export const musicPlayerInit = () => {
 
         const minutesTotal              =   Math.floor(duration / 60) || '0';
         const secondsTotal              =   Math.floor(duration % 60) || '0';
-
         audioTimePassed.textContent     =   `${addZero(minutesPassed)}:${addZero(secondsPassed)}`;
         audioTimeTotal.textContent      =   `${addZero(minutesTotal)}:${addZero(secondsTotal)}`;
 
-    });
+    };
+
+    updateTime();
+
+
+    audioPlayer.addEventListener('timeupdate', updateTime);
+
 
     audioProgress.addEventListener('click', event => {
         const x                 = event.offsetX;
@@ -110,6 +123,16 @@ export const musicPlayerInit = () => {
         const progress          =   (x / allWidth) * audioPlayer.duration;
         audioPlayer.currentTime =   progress;
     });
+
+
+    musicPlayerInit.stop = () => {
+        if (!audioPlayer.paused) {
+            audioPlayer.pause();
+            audio.classList.remove('play');
+            audioButtonPlay.classList.remove('fa-pause');
+            audioButtonPlay.classList.add('fa-play');
+        }
+    }
 
 
 
